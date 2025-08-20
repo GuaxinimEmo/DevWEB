@@ -82,7 +82,7 @@ include 'conexao.php';
         </table>
     </div>
     <div>
-        <a href="index.html">Menu Principal</a>
+        <a href="index.php">Menu Principal</a>
     </div>
 </body>
 </html>

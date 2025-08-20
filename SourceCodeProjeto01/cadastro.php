@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <div>
-    <a href="index.html">Menu Principal</a>
+    <a href="index.php">Menu Principal</a>
 </div>
 
 
