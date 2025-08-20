@@ -43,3 +43,12 @@ body {
   button:hover {
     background-color: #0056b3;
   }
+  #menu {
+    margin-top: 20px;
+    text-align: center;
+    color: #ffffff;
+  }
+  h2 {
+    text-align: center;
+    color: #333;
+  }
