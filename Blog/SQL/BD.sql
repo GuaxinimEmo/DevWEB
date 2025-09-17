@@ -24,3 +24,6 @@ CREATE TABLE post (
     KEY fk_post_usuario_idx (usuario_id),
     CONSTRAINT fk_post_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id)
 );
+
+insert into usuario (nome, email, senha, ativo, adm) values
+('Admin', 'adm@gmail.com', '123', 1, 1);
