@@ -1,5 +1,4 @@
 <?php
-session_start();
 //require_once 'includes/valida_login.php';
 require_once 'includes/funcoes.php';
 require_once 'core/conexao_mysql.php';

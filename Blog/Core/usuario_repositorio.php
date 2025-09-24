@@ -28,7 +28,6 @@ switch ($acao) {
 
         header('Location: ../usuarios.php');
         exit;
-        break;
 
     case 'update':
         $id = (int)$id;
@@ -53,7 +52,6 @@ switch ($acao) {
 
         header('Location: ../usuarios.php');
         exit;
-        break;
 
     case 'login':
         $criterio = [
@@ -84,13 +82,11 @@ switch ($acao) {
         // Se falhar, volta para login
         header('Location: ../login_formulario.php');
         exit;
-        break;
 
     case 'logout':
         session_destroy();
         header('Location: ../index.php');
         exit;
-        break;
 
     case 'status':
         $id = (int)$id;
@@ -112,7 +108,6 @@ switch ($acao) {
 
         header('Location: ../usuarios.php');
         exit;
-        break;
 
     case 'adm':
         $id = (int)$id;
@@ -134,7 +129,6 @@ switch ($acao) {
 
         header('Location: ../usuarios.php');
         exit;
-        break;
 }
 
 header('Location: ../index.php');
