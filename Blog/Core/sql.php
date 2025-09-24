@@ -1,4 +1,5 @@
 <?php
+
 function insert(string $entidade, array $dados) : string
 {
     $instrucao = "INSERT INTO {$entidade}";
@@ -8,10 +9,9 @@ function insert(string $entidade, array $dados) : string
 
     $instrucao .= " ({$campos})";
     $instrucao .= " VALUES ({$valores})";
-
+    
     return $instrucao;
 }
-
 
 function update(string $entidade, array $dados, array $criterio = []) : string
 {
@@ -21,7 +21,7 @@ function update(string $entidade, array $dados, array $criterio = []) : string
         $set[] = "{$campo} = {$dado}";
     }
 
-    $instrucao .= ' SET ' . implode(', ', $set) ;
+    $instrucao .= ' SET ' . implode(', ', $set);
 
     if(!empty($criterio)){
         $instrucao .= ' WHERE ';
@@ -33,7 +33,6 @@ function update(string $entidade, array $dados, array $criterio = []) : string
 
     return $instrucao;
 }
-
 
 function delete(string $entidade, array $criterio = []) : string
 {
@@ -50,7 +49,6 @@ function delete(string $entidade, array $criterio = []) : string
     return $instrucao;
 }
 
-
 function select(string $entidade, array $campos, array $criterio = [], string $ordem = null) : string
 {
     $instrucao = "SELECT " . implode(', ', $campos);
@@ -65,9 +63,10 @@ function select(string $entidade, array $campos, array $criterio = [], string $o
     }
 
     if(!empty($ordem)){
-        $instrucao .= " ORDER BY $ordem ";
+        $instrucao .= " ORDER BY {$ordem} ";
     }
 
     return $instrucao;
 }
+
 ?>

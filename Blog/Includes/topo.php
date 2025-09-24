@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <div class="card">
     <div class="card-header">
         <h1> Projeto Blog em PHP + MySQL IFSP - Gean</h1>

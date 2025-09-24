@@ -1,9 +1,10 @@
 <?php
+session_start();
 require_once '../includes/funcoes.php';
 require_once 'conexao_mysql.php';
 require_once 'sql.php';
 require_once 'mysql.php';
-$salt = '$exemplosaltifsp';
+$salt = 'aaa';
 
 foreach ($_POST as $indice => $dado) {
     $$indice = limparDados($dado);
@@ -14,7 +15,7 @@ foreach ($_GET as $indice => $dado) {
 }
 
 switch ($acao) {
-    case 'inserir':
+    case 'insert':
         $dados = [
             'nome' => $nome,
             'email' => $email,
@@ -26,111 +27,101 @@ switch ($acao) {
             $dados
         );
 
-        header('Location: ../usuarios.php');
-        exit;
+        break;
 
-    case 'update':
-        $id = (int)$id;
-        $dados = [
-            'nome' => $nome,
-            'email' => $email
-        ];
 
-        if (!empty($senha)) {
-            $dados['senha'] = crypt($senha, $salt);
-        }
+case 'update':
+    $id = (int)$id;
+    $dados = [
+        'nome' => $nome,
+        'email' => $email
+    ];
 
-        $criterio = [
-            ['id', '=', $id]
-        ];
+    $criterio = [
+        ['id', '=', $id]
+    ];
 
-        atualiza(
-            'usuario',
-            $dados,
-            $criterio
-        );
+    atualiza(
+        'usuario',
+        $dados,
+        $criterio
+    );
 
-        header('Location: ../usuarios.php');
-        exit;
+    break;
 
     case 'login':
-        $criterio = [
-            ['email', '=', $email],
-            ['AND', 'ativo', '=', 1]
-        ];
+    $criterio = [
+        ['email', '=', $email],
+        ['AND', 'ativo', '=', 1]
+    ];
 
-        $retorno = buscar(
-            'usuario',
-            ['id', 'nome', 'email', 'senha', 'adm'],
-            $criterio
-        );
+    $retorno = buscar(
+        'usuario',
+        ['id', 'nome', 'email', 'senha', 'adm'],
+        $criterio
+    );
 
-        if (count($retorno) > 0) {
-            if (crypt($senha, $salt) == $retorno[0]['senha']) {
-                $_SESSION['login']['usuario'] = $retorno[0];
-                if (!empty($_SESSION['url_retorno'])) {
-                    $url = $_SESSION['url_retorno'];
-                    $_SESSION['url_retorno'] = '';
-                    header('Location: ' . $url);
-                    exit;
-                } else {
-                    header('Location: ../index.php');
-                    exit;
-                }
+    if (count($retorno) > 0) {
+        if (crypt($senha, $salt) == $retorno[0]['senha']) {
+            $_SESSION['login']['usuario'] = $retorno[0];
+            if (!empty($_SESSION['url_retorno'])) {
+                header('Location: ' . $_SESSION['url_retorno']);
+                $_SESSION['url_retorno'] = '';
+                exit;
             }
         }
-        // Se falhar, volta para login
-        header('Location: ../login_formulario.php');
-        exit;
+    }
+
+    break;
 
     case 'logout':
-        session_destroy();
-        header('Location: ../index.php');
-        exit;
+    session_destroy();
+    break;
 
     case 'status':
         $id = (int)$id;
         $valor = (int)$valor;
-
+    
         $dados = [
             'ativo' => $valor
         ];
-
+    
         $criterio = [
             ['id', '=', $id]
         ];
-
+    
         atualiza(
             'usuario',
             $dados,
             $criterio
         );
-
+    
         header('Location: ../usuarios.php');
         exit;
-
-    case 'adm':
+        break;
+    
+        case 'adm':
         $id = (int)$id;
         $valor = (int)$valor;
-
+    
         $dados = [
             'adm' => $valor
         ];
-
+    
         $criterio = [
             ['id', '=', $id]
         ];
-
+    
         atualiza(
             'usuario',
             $dados,
             $criterio
         );
-
+    
         header('Location: ../usuarios.php');
         exit;
-}
-
-header('Location: ../index.php');
-exit;
+        break;
+    }
+   header('Location: ../index.php');
 ?>
+    
