@@ -187,9 +187,7 @@ function buscar(string $entidade, array $campos = ['*'], array $criterio = [], s
     mysqli_stmt_close($stmt);
 
     desconecta($conexao);
-
-    $retorno = $retorno;
-
+    
     return $retorno;
 }
 

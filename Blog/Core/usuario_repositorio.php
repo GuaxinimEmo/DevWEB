@@ -98,7 +98,7 @@ case 'update':
     
         header('Location: ../usuarios.php');
         exit;
-        break;
+        // break;
     
         case 'adm':
         $id = (int)$id;
@@ -120,7 +120,7 @@ case 'update':
     
         header('Location: ../usuarios.php');
         exit;
-        break;
+         // break;
     }
    header('Location: ../index.php');
 ?>
