@@ -4,8 +4,7 @@ function insert(string $entidade, array $dados) : string
     $instrucao = "INSERT INTO {$entidade}";
 
     $campos = implode(', ', array_keys($dados));
-    // Cria a mesma quantidade de coringas que os campos
-    $valores = implode(', ', array_fill(0, count($dados), '?'));
+    $valores = implode(', ', array_values($dados));
 
     $instrucao .= " ({$campos})";
     $instrucao .= " VALUES ({$valores})";
