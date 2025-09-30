@@ -14,7 +14,7 @@
     'data_postagem',
     'texto',
     '(select nome
-        crom usuario
+        from usuario
         where usuario.id = post.usuario_id) as nome_usuario'
     ],
     [
@@ -23,7 +23,7 @@
     );
     $post=$posts[0];
     $data_post = date_create($post['data_postagem']);
-    $data_post = date_format($data_post, 'd/m/Y H:i:s');
+    $data_post= date_format($data_post, 'd/m/Y  H:i:s');
 
 ?><html>
   <head>
@@ -50,7 +50,7 @@
                         <h5 class="card=title"><?php echo $post['titulo'];?></h5>
                         <h5 class="card-subtitle mb-2 text-muted">
                             <?php echo $data_post;?> Por 
-                            <?php echo $post['nome'];?>
+                            <?php echo $post['nome_usuario'];?>
                         </h5>
                         <div class=card-text>
                             <?php echo html_entity_decode($post['texto']) ?>
@@ -67,5 +67,5 @@
             </div>
         </div>
         <script src="lib/bootstrap-4.2.1-dist/js/bootstrap.min.js"></script>
-    </body>
+    </body>
 </html>
